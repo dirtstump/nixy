@@ -24,7 +24,7 @@
 
     git = {
       username = "dirtstump";
-      email = "206110319+dirtstump@users.noreply.github.com";
+      email = "dirtstump@gmail.com";
     };
 
     autoUpgrade = false;
