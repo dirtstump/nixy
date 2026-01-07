@@ -30,6 +30,15 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+        # to have it up-to-date or simply don't specify the nixpkgs input
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
     # Server
     eleakxir.url = "github:anotherhadi/eleakxir";
     nixarr.url = "github:rasmus-kirk/nixarr";
@@ -37,49 +46,48 @@
 
   outputs = inputs @ {nixpkgs, ...}: {
     nixosConfigurations = {
-      lap =
-        nixpkgs.lib.nixosSystem {
-          modules = [
-            {
-              nixpkgs.overlays = [];
-              _module.args = {
-                inherit inputs;
-              };
-            }
-            inputs.nixos-hardware.nixosModules.framework-13-7040-amd
-            inputs.home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
-            ./hosts/lap/configuration.nix
-          ];
-        };
-#      nixy =
-#        # CHANGEME: This should match the 'hostname' in your variables.nix file
-#        nixpkgs.lib.nixosSystem {
-#          modules = [
-#            {
-#              nixpkgs.overlays = [];
-#              _module.args = {
-#                inherit inputs;
-#              };
-#            }
-#            inputs.nixos-hardware.nixosModules.omen-16-n0005ne # CHANGEME: check https://github.com/NixOS/nixos-hardware
-#            inputs.home-manager.nixosModules.home-manager
-#            inputs.stylix.nixosModules.stylix
-#            ./hosts/laptop/configuration.nix # CHANGEME: change the path to match your host folder
-#          ];
-#        };
-#      # Jack is my server
-#      jack = nixpkgs.lib.nixosSystem {
-#        modules = [
-#          {_module.args = {inherit inputs;};}
-#          inputs.home-manager.nixosModules.home-manager
-#          inputs.stylix.nixosModules.stylix
-#          inputs.sops-nix.nixosModules.sops
-#          inputs.nixarr.nixosModules.default
-#          inputs.eleakxir.nixosModules.eleakxir
-#          ./hosts/server/configuration.nix
-#        ];
-#      };
+      lap = nixpkgs.lib.nixosSystem {
+        modules = [
+          {
+            nixpkgs.overlays = [];
+            _module.args = {
+              inherit inputs;
+            };
+          }
+          inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+          inputs.home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
+          ./hosts/lap/configuration.nix
+        ];
+      };
+      #      nixy =
+      #        # CHANGEME: This should match the 'hostname' in your variables.nix file
+      #        nixpkgs.lib.nixosSystem {
+      #          modules = [
+      #            {
+      #              nixpkgs.overlays = [];
+      #              _module.args = {
+      #                inherit inputs;
+      #              };
+      #            }
+      #            inputs.nixos-hardware.nixosModules.omen-16-n0005ne # CHANGEME: check https://github.com/NixOS/nixos-hardware
+      #            inputs.home-manager.nixosModules.home-manager
+      #            inputs.stylix.nixosModules.stylix
+      #            ./hosts/laptop/configuration.nix # CHANGEME: change the path to match your host folder
+      #          ];
+      #        };
+      #      # Jack is my server
+      #      jack = nixpkgs.lib.nixosSystem {
+      #        modules = [
+      #          {_module.args = {inherit inputs;};}
+      #          inputs.home-manager.nixosModules.home-manager
+      #          inputs.stylix.nixosModules.stylix
+      #          inputs.sops-nix.nixosModules.sops
+      #          inputs.nixarr.nixosModules.default
+      #          inputs.eleakxir.nixosModules.eleakxir
+      #          ./hosts/server/configuration.nix
+      #        ];
+      #      };
     };
   };
 }

@@ -7,6 +7,7 @@
     # Programs
     ../../home/programs/firefox
     ../../home/programs/brave
+    ../../home/programs/zen-browser
     # ../../home/programs/proton
     ../../home/programs/ghostty
     ../../home/programs/nvf
