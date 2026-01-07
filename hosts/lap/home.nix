@@ -51,6 +51,7 @@
       calibre
 
       # Dev
+      gh
       go
       bun
       docker
