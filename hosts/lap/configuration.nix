@@ -13,11 +13,12 @@
     ../../nixos/hyprland.nix
     ../../nixos/docker.nix
 
-
     # You should let those lines as is
     ./hardware-configuration.nix
     ./variables.nix
   ];
+
+  home-manager.backupFileExtension = "hm-backup";
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 

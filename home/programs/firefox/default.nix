@@ -1,9 +1,18 @@
 {pkgs, ...}: {
   programs.firefox = {
     enable = true;
+    profiles = {
+      dirt = {
+        name = "dirt";
+      };
+    };
   };
 
-  home.sessionVariables = {
-    DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+  stylix.targets.firefox = {
+    profileNames = ["dirt"];
   };
+
+  # home.sessionVariables = {
+  #   DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+  # };
 }

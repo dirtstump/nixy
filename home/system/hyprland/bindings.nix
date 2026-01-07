@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     "$shiftMod" = "SUPER_SHIFT";
@@ -7,8 +11,7 @@
       [
         "$mod,RETURN, exec, uwsm app -- ${pkgs.ghostty}/bin/ghostty" # Ghostty (terminal)
         "$mod,E, exec,  uwsm app -- ${pkgs.xfce.thunar}/bin/thunar" # Thunar
-        "$mod,B, exec,  uwsm app -- ${pkgs.brave}/bin/brave" # Browser (Brave)
-        "$mod,K, exec,  uwsm app -- ${pkgs.proton-pass}/bin/proton-pass" # Proton Pass
+        "$mod,B, exec,  zen" # Browser (zen)
         "$mod,V, exec,  uwsm app -- ${pkgs.protonvpn-gui}/bin/protonvpn-app" # Proton VPN
         "$mod,A, exec,  uwsm app -- env WEBKIT_DISABLE_COMPOSITING_MODE=1 ${pkgs.proton-authenticator}/bin/proton-authenticator" # Proton Auth
         "$mod,M, exec,  uwsm app -- ${pkgs.vivaldi}/bin/vivaldi --profile-directory=Default --app-id=jnpecgipniidlgicjocehkhajgdnjekh" # Proton Mail (PWA)
@@ -19,9 +22,13 @@
         "$mod,T, togglefloating," # Toggle Floating
         "$mod,F, fullscreen" # Toggle Fullscreen
         "$mod,left, movefocus, l" # Move focus left
+        "$mod,H, movefocus, l" # Move focus left like VIM
         "$mod,right, movefocus, r" # Move focus Right
+        "$mod,L, movefocus, r" # Move focus Right like VIM
         "$mod,up, movefocus, u" # Move focus Up
+        "$mod,K, movefocus, u" # Move focus Up like VIM
         "$mod,down, movefocus, d" # Move focus Down
+        "$mod,J, movefocus, d" # Move focus Down like VIM
         "$shiftMod,up, focusmonitor, -1" # Focus previous monitor
         "$shiftMod,down, focusmonitor, 1" # Focus next monitor
         "$shiftMod,left, layoutmsg, addmaster" # Add to master
